@@ -30,19 +30,27 @@ class UserList extends React.Component {
 	render() {
 	    return (
 	        <table>
-	            <tr>
-	                <th>Gender</th>
-	                <th>First Name</th>
-	                <th>Last Name</th>
-	                <th>Country</th>
-	                <th>Birthday</th>
-	            </tr>
-	            {
-					this.state.results.map(
-					 user =>
-							<UserRow user={user} />
-					)
-				}
+	            <thead>
+					<tr>
+						<th>Gender</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Country</th>
+						<th>Birthday</th>
+					</tr>
+	            </thead>
+	            <tbody>
+					{
+					    this.state.results.map(
+							user => {
+								return <UserRow 
+								    user={user} 
+								    key={user.name.last + user.dob.date} 
+								/>;
+							}
+						)
+					}
+				</tbody>
 	        </table>
 	    )
 	}
