@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Moment from 'react-moment';
-import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class UserList extends React.Component {
     constructor(props) {
@@ -20,41 +20,46 @@ class UserList extends React.Component {
 	    };
     }
   
-  componentDidMount(){
+    componentDidMount(){
 	  
-	  const URL =
-		  'https://randomuser.me/api/?results=20&nat=us,ca&inc=gender,name,location,dob';
+	    const URL =
+		    'https://randomuser.me/api/?results=20&nat=us,ca&inc=gender,name,location,dob';
 	  
-	  fetch(URL)
-		  .then(res => res.json())
-		  .then(res => {
-		      this.setState({results: res.results});
-		      console.log("Fetch Results...");
-		      console.log(this.state.results);
-		   })	  
+	    fetch(URL)
+		    .then(res => res.json())
+		    .then(res => {
+		        this.setState({results: res.results});
+		        console.log("fetch(URL) Results:");
+		        console.log(this.state.results);
+	    })	  
 	}
 	
 	render() {
 	    return (
-	        <table>
-	            <thead>
+	        <table className=
+	            "table table-striped table-bordered table-hover table-sm table-responsive" >
+	            <thead className="thead-dark" >
 					<tr>
-						<th>Gender</th>
-						<th onClick={this.sortByFirst} >First Name &uarr; &darr;</th>
-						<th onClick={this.sortByLast} >Last Name &uarr; &darr;</th>
-						<th>Country</th>
-						<th>Date of Birth</th>
-						<th>Birthday</th>
+						<th scope="col" >Gender</th>
+						<th scope="col" onClick={this.sortByFirst} >
+						    First Name &uarr; &darr;
+						</th>
+						<th scope="col" onClick={this.sortByLast} >
+						    Last Name &uarr; &darr;
+						</th>
+						<th scope="col" >Country</th>
+						<th scope="col" >Date of Birth</th>
+						<th scope="col" >Birthday</th>
 					</tr>
 	            </thead>
 	            <tbody>
 					{
 					    this.state.results.map(
 							user => {
-								return <UserRow 
+								return (<UserRow 
 								    user={user} 
 								    key={user.name.last + user.dob.date} 
-								/>;
+								/>);
 							}
 						)
 					}
