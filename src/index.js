@@ -66,10 +66,10 @@ class UserList extends React.Component {
 					<tr>
 						<th scope="col" >Gender</th>
 						<th scope="col" onClick={this.sortByFirst} >
-						    First Name &uarr; &darr;
+						    <div>&uarr; &darr;</div> First Name
 						</th>
 						<th scope="col" onClick={this.sortByLast} >
-						    Last Name &uarr; &darr;
+						    <div>&uarr; &darr;</div> Last Name
 						</th>
 						<th scope="col" >Country</th>
 						<th scope="col" >Date of Birth</th>
