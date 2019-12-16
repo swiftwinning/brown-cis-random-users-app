@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Moment from 'react-moment';
 import './index.css';
 
 class UserList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {results: [{
-		    dob: {age: 0},
+		    dob: {date: ""},
 			gender: "",
 			location: {country: ""},
 			name: {first: "", last: ""}
@@ -36,6 +37,7 @@ class UserList extends React.Component {
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Country</th>
+						<th>Date of Birth</th>
 						<th>Birthday</th>
 					</tr>
 	            </thead>
@@ -64,7 +66,8 @@ class UserRow extends React.Component {
 	            <UserDataCell data={this.props.user.name.first} />
 	            <UserDataCell data={this.props.user.name.last} />
 	            <UserDataCell data={this.props.user.location.country} />
-	            <UserDataCell data={this.props.user.dob.age} />
+	            <DateOfBirthCell dob={this.props.user.dob} />
+	            <BirthdayCell dob={this.props.user.dob} />
 	        </tr>
 	    )
 	}
@@ -76,6 +79,36 @@ class UserDataCell extends React.Component {
 	        <td>{this.props.data}</td>
 	    )
 	}
+}
+
+class DateOfBirthCell extends React.Component {
+    render() {
+        return (
+            <td>
+                <Moment format="D MMM YYYY">{this.props.dob.date}</Moment>
+            </td>
+        )
+    }
+}
+
+class BirthdayCell extends React.Component {
+    render() {
+        let message;
+        const dobDate = new Date(this.props.dob.date);
+        const todayDate = new Date();
+        if (dobDate.getMonth() < todayDate.getMonth()) {
+		    message = "already happened";
+		} else if (dobDate.getMonth() > todayDate.getMonth()){
+		    message = "has yet to occur";
+		} else if (dobDate.getDate() < todayDate.getDate()){
+		    message = "already happened";
+		} else if (dobDate.getDate() > todayDate.getDate()){
+		    message = "has yet to occur";
+		} else {
+		    message = "is today!";
+		}
+		return <td>{message}</td>
+    }
 }
 
 ReactDOM.render(
