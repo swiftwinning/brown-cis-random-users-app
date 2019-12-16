@@ -1,68 +1,39 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Jeffrey Winning
 
-In the project directory, you can run:
+## Brown CIS - Random User API Parser Application
 
-### `npm start`
+[Try the Application here](https://swiftwinning.github.io/brown-cis-random-users-app/)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is a one-page React.js application for fetching and dynamically displaying
+the data of random users from the randomuser.me API.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+It retrieves an Array of 20 users from U.S. and Canada, taking only the data
+needed for our data model: gender, name, location, and dob.
 
-### `npm test`
+It includes the Bonus Feature of dynamic re-sorting of the user Array by writing
+a custom compareFunction for the Array.prototype.sort() method,
+and it uses the libraries bootstrap and react-moment to format the table and the dates.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## My Experience with the Assignment
 
-### `npm run build`
+This is my very first React App! With a little more familiarity with React's lifecycle functions and scope of variables, I believe I can improve this code.  
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In particular, the UserList constructor class seems too long for my tastes.  I think it could be shortened by splitting some sub-components into separate components, but I left them together to solve the immediate issue of clickable sub-components having direct access to set the state of the UserList.  
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Similarly, the functions sortByFirst and sortByLast look like they have a lot of repetition that might be eliminated.  By duplicating similar code, this version allows each compareFunction of the sort method to find the correct items to be compared from within the data structure without making things more complex in terms of passing more function arguments.  I suspect a little more time on the assignment would lead a way to pass the right data to the right function scope in the most elegant way.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I am so excited about the possibility of joining the team at Brown CIS!  Please get in touch if you'd like to discuss critiques of my App or talk more about how I can be an asset to your team.
 
-### `npm run eject`
+Thank you.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Jeffrey Winning
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Portfolio site: swiftwinning.com](http://swiftwinning.com/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[LinkedIn page](https://www.linkedin.com/in/swiftwinning)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+swiftwinning @ gmail . com
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+617 595 8972
