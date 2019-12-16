@@ -6,12 +6,18 @@ import './index.css';
 class UserList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {results: [{
-		    dob: {date: ""},
-			gender: "",
-			location: {country: ""},
-			name: {first: "", last: ""}
-	    }] };
+        this.sortByFirst = this.sortByFirst.bind(this);
+        this.sortByLast = this.sortByLast.bind(this);
+        this.state = {
+            results: [{
+				dob: {date: 0},
+				gender: "",
+				location: {country: ""},
+				name: {first: "", last: ""},
+	        }],
+	        sortedByFirst: false,
+	        sortedByLast: false
+	    };
     }
   
   componentDidMount(){
@@ -34,8 +40,8 @@ class UserList extends React.Component {
 	            <thead>
 					<tr>
 						<th>Gender</th>
-						<th>First Name</th>
-						<th>Last Name</th>
+						<th onClick={this.sortByFirst} >First Name &uarr; &darr;</th>
+						<th onClick={this.sortByLast} >Last Name &uarr; &darr;</th>
 						<th>Country</th>
 						<th>Date of Birth</th>
 						<th>Birthday</th>
@@ -55,6 +61,74 @@ class UserList extends React.Component {
 				</tbody>
 	        </table>
 	    )
+	}
+	
+	sortByFirst() {
+	    var sortedResults;
+	    if (!this.state.sortedByFirst) {
+			sortedResults = this.state.results.sort(function(a, b) {
+					const name1 = a.name.first.toLowerCase();
+					const name2 = b.name.first.toLowerCase();
+					if (name1 < name2) {
+						return -1;
+					} else if (name1 > name2) {
+						return 1;
+					} else {
+						return 0;
+					}
+			});
+		} else {
+		    sortedResults = this.state.results.sort(function(a, b) {
+					const name1 = a.name.first.toLowerCase();
+					const name2 = b.name.first.toLowerCase();
+					if (name1 < name2) {
+						return 1;
+					} else if (name1 > name2) {
+						return -1;
+					} else {
+						return 0;
+					}
+			});
+		}
+		this.setState({
+            results: sortedResults,
+	        sortedByFirst: !this.state.sortedByFirst,
+	        sortedByLast: false
+	    });
+	}
+	
+	sortByLast() {
+	    var sortedResults;
+	    if (!this.state.sortedByLast) {
+			sortedResults = this.state.results.sort(function(a, b) {
+					const name1 = a.name.last.toLowerCase();
+					const name2 = b.name.last.toLowerCase();
+					if (name1 < name2) {
+						return -1;
+					} else if (name1 > name2) {
+						return 1;
+					} else {
+						return 0;
+					}
+			});
+		} else {
+		    sortedResults = this.state.results.sort(function(a, b) {
+					const name1 = a.name.last.toLowerCase();
+					const name2 = b.name.last.toLowerCase();
+					if (name1 < name2) {
+						return 1;
+					} else if (name1 > name2) {
+						return -1;
+					} else {
+						return 0;
+					}
+			});
+		}
+		this.setState({
+            results: sortedResults,
+	        sortedByFirst: false,
+	        sortedByLast: !this.state.sortedByLast
+	    });
 	}
 }
 
@@ -85,7 +159,7 @@ class DateOfBirthCell extends React.Component {
     render() {
         return (
             <td>
-                <Moment format="D MMM YYYY">{this.props.dob.date}</Moment>
+                <Moment format="MMM D, YYYY">{this.props.dob.date}</Moment>
             </td>
         )
     }
